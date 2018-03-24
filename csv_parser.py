@@ -20,8 +20,7 @@ def get_lines(csv_data):
 
 def get_people(csv_data):
     lines = get_lines(csv_data)
-    reader = csv.reader(lines)
-    return map(lambda x: {'name': x[0], 'org': x[1], 'is_student': x[2]}, reader)
+    return csv.DictReader(lines)
 
 
 def print_people(people):
