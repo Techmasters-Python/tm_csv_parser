@@ -1,4 +1,4 @@
-from csv_parser import get_lines, get_students
+from csv_parser import get_lines, get_people
 
 
 def test_get_lines():
@@ -6,7 +6,10 @@ def test_get_lines():
 
 
 def test_get_students():
-    data = "a,b\nc,d"
-    output = list(get_students(data))
-    expectation = [['a', 'b'], ['c', 'd']]
+    data = "a,b,c\nc,d,e"
+    output = list(get_people(data))
+    expectation = [
+        {'name': 'a', 'org': 'b', 'is_student': 'c'},
+        {'name': 'c', 'org': 'd', 'is_student': 'e'},
+    ]
     assert output == expectation

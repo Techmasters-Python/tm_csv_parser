@@ -18,20 +18,21 @@ def get_lines(csv_data):
     return csv_data.splitlines()
 
 
-def get_students(csv_data):
+def get_people(csv_data):
     lines = get_lines(csv_data)
-    return csv.reader(lines)
+    reader = csv.reader(lines)
+    return map(lambda x: {'name': x[0], 'org': x[1], 'is_student': x[2]}, reader)
 
 
-def print_students(students):
-    for name, org, is_student in students:
-        print(f'"{name}" works at "{org}"')
+def print_people(people):
+    for person in people:
+        print(f'"{person["name"]}" works at "{person["org"]}"')
 
 
 def main():
     csv_data = get_csv_data()
-    students = get_students(csv_data)
-    print_students(students)
+    people = get_people(csv_data)
+    print_people(people)
 
 
 if __name__ == '__main__':
